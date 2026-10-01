@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rohit Kuswaha | Full Stack Software developer</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#2563eb',
+                            600: '#1d4ed8',
+                            700: '#1e40af',
+                            accent: '#4f46e5',
+                            teal: '#0d9488'
+                        },
+                        dark: {
+                            bg: '#0b0f19',
+                            card: '#111827',
+                            border: '#1f2937'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f8fafc;
+        }
+        .dark ::-webkit-scrollbar-track {
+            background: #0b0f19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #1f2937;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2563eb;
+        }
+        
+        .navbar-glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .dark .navbar-glass {
+            background: rgba(11, 15, 25, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .cursor-blink {
+            display: inline-block;
+            width: 2px;
+            margin-left: 2px;
+            background-color: #2563eb;
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #1d4ed8 0%, #4f46e5 50%, #0d9488 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .skill-bar-fill {
+            transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 dark:bg-dark-bg text-slate-800 dark:text-slate-200 font-sans transition-colors duration-300 antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- Navigation Bar -->
+    <header class="fixed top-0 left-0 right-0 z-50 navbar-glass border-b border-slate-200/80 dark:border-slate-800/80 transition-all duration-300 py-3.5" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            
+            <!-- Clean Logo -->
+            <a href="#hero" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-brand-accent flex items-center justify-center text-white font-bold text-base shadow-md shadow-brand-500/20 group-hover:scale-105 transition-transform duration-300">
+                    AM
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-base font-bold text-slate-900 dark:text-white tracking-tight leading-tight">Alex Morgan</span>
+                    <span class="text-xs font-medium text-slate-500 dark:text-slate-400">Software Engineer</span>
+                </div>
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-semibold text-slate-600 dark:text-slate-300">
+                <a href="#about" class="hover:text-brand-600 dark:hover:text-brand-500 transition-colors py-1">About</a>
+                <a href="#skills" class="hover:text-brand-600 dark:hover:text-brand-500 transition-colors py-1">Skills</a>
+                <a href="#projects" class="hover:text-brand-600 dark:hover:text-brand-500 transition-colors py-1">Projects</a>
+                <a href="#services" class="hover:text-brand-600 dark:hover:text-brand-500 transition-colors py-1">Services</a>
+                <a href="#contact" class="hover:text-brand-600 dark:hover:text-brand-500 transition-colors py-1">Contact</a>
+            </nav>
+
+            <!-- Action Controls -->
+            <div class="hidden md:flex items-center space-x-4">
+                <button id="theme-toggle" aria-label="Toggle dark/light theme" class="p-2.5 rounded-xl bg-slate-200/70 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-500 transition-colors focus:outline-none">
+                    <i class="fa-solid fa-moon text-base block dark:hidden"></i>
+                    <i class="fa-solid fa-sun text-base hidden dark:block text-amber-400"></i>
+                </button>
+                <a href="#contact" class="px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-semibold text-sm shadow-md shadow-brand-600/20 hover:shadow-lg hover:shadow-brand-600/30 hover:-translate-y-0.5 transition-all duration-300">
+                    Get in Touch
+                </a>
+            </div>
+
+            <!-- Mobile Controls -->
+            <div class="flex items-center space-x-3 md:hidden">
+                <button id="theme-toggle-mobile" aria-label="Toggle theme mobile" class="p-2 rounded-xl bg-slate-200/80 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300">
+                    <i class="fa-solid fa-moon text-base block dark:hidden"></i>
+                    <i class="fa-solid fa-sun text-base hidden dark:block text-amber-400"></i>
+                </button>
+                <button id="mobile-menu-btn" aria-label="Toggle Menu" class="p-2.5 rounded-xl text-slate-700 dark:text-slate-300 hover:bg-slate-200/70 dark:hover:bg-slate-800 focus:outline-none">
+                    <i class="fa-solid fa-bars text-lg" id="menu-icon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden border-b border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-dark-bg/95 px-6 pt-4 pb-6 space-y-3 transition-all duration-300 mt-2">
+            <a href="#about" class="mobile-nav-link block py-2.5 text-base font-semibold text-slate-700 dark:text-slate-200 hover:text-brand-600">About</a>
+            <a href="#skills" class="mobile-nav-link block py-2.5 text-base font-semibold text-slate-700 dark:text-slate-200 hover:text-brand-600">Skills</a>
+            <a href="#projects" class="mobile-nav-link block py-2.5 text-base font-semibold text-slate-700 dark:text-slate-200 hover:text-brand-600">Projects</a>
+            <a href="#services" class="mobile-nav-link block py-2.5 text-base font-semibold text-slate-700 dark:text-slate-200 hover:text-brand-600">Services</a>
+            <a href="#contact" class="mobile-nav-link block py-2.5 text-base font-semibold text-slate-700 dark:text-slate-200 hover:text-brand-600">Contact</a>
+            <div class="pt-2">
+                <a href="#contact" class="mobile-nav-link block w-full text-center py-3 rounded-xl bg-brand-600 text-white font-semibold text-sm shadow-md">Get in Touch</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="relative min-h-screen flex items-center pt-28 pb-16 lg:pt-36 lg:pb-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- Hero Content -->
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                        <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-400 font-semibold text-xs tracking-wide uppercase border border-brand-200 dark:border-brand-500/20">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                            <span>Open for New Opportunities</span>
+                        </div>
+                        
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.15]">
+                            Designing & Building <br class="hidden sm:inline">
+                            <span class="gradient-text">Digital Products</span>
+                        </h1>
+
+                        <p class="text-xl font-medium text-slate-600 dark:text-slate-300 h-10 flex items-center justify-center lg:justify-start">
+                            <span>I build&nbsp;</span><span id="typed-text" class="text-brand-600 dark:text-brand-400 font-bold"></span><span class="cursor-blink">&nbsp;</span>
+                        </p>
+
+                        <p class="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                            I am a Full Stack Engineer dedicated to building clean, accessible, and high-performance applications with modern tech stacks.
+                        </p>
+
+                        <!-- Action Buttons -->
+                        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                            <a href="#projects" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-semibold text-sm shadow-lg shadow-brand-600/25 hover:shadow-brand-600/35 hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center gap-2">
+                                <span>Explore My Projects</span>
+                                <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </a>
+                            <a href="#contact" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-semibold text-sm transition-all duration-300 flex items-center justify-center gap-2 border border-slate-200 dark:border-slate-700 shadow-sm">
+                                <span>Contact Me</span>
+                                <i class="fa-regular fa-paper-plane text-xs"></i>
+                            </a>
+                        </div>
+
+                        <!-- Highlights -->
+                        <div class="pt-8 border-t border-slate-200 dark:border-slate-800 grid grid-cols-3 gap-4 max-w-md mx-auto lg:mx-0">
+                            <div>
+                                <div class="text-2xl font-extrabold text-slate-900 dark:text-white">5+</div>
+                                <div class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5">Years Experience</div>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-extrabold text-slate-900 dark:text-white">40+</div>
+                                <div class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5">Projects Delivered</div>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-extrabold text-slate-900 dark:text-white">99%</div>
+                                <div class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5">Client Satisfaction</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Profile Card -->
+                    <div class="lg:col-span-5 flex justify-center">
+                        <div class="relative w-full max-w-sm">
+                            <div class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-brand-600 to-brand-teal opacity-20 blur-xl"></div>
+                            <div class="relative bg-white dark:bg-dark-card p-4 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-xl">
+                                <div class="aspect-[4/5] rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-800">
+                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80" alt="Alex Morgan" class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500">
+                                </div>
+                                <div class="pt-4 px-2 pb-2 flex items-center justify-between">
+                                    <div>
+                                        <h3 class="font-bold text-slate-900 dark:text-white text-base">Alex Morgan</h3>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Based in San Francisco, CA</p>
+                                    </div>
+                                    <div class="flex space-x-2">
+                                        <a href="https://github.com" target="_blank" aria-label="GitHub" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-brand-50 dark:hover:bg-brand-500/20 text-slate-600 dark:text-slate-300 hover:text-brand-600 flex items-center justify-center text-sm transition-colors">
+                                            <i class="fa-brands fa-github"></i>
+                                        </a>
+                                        <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-brand-50 dark:hover:bg-brand-500/20 text-slate-600 dark:text-slate-300 hover:text-brand-600 flex items-center justify-center text-sm transition-colors">
+                                            <i class="fa-brands fa-linkedin-in"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 bg-slate-100/60 dark:bg-slate-900/40 border-y border-slate-200/60 dark:border-slate-800/60">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <span class="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">About Me</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-1">Driven by Quality & Simplicity</h2>
+                    <div class="w-12 h-1 bg-brand-600 mx-auto mt-4 rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-6 space-y-5">
+                        <h3 class="text-2xl font-bold text-slate-900 dark:text-white">
+                            Building reliable web applications with focus on performance and seamless user experience.
+                        </h3>
+                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Over the past 5 years, I have collaborated with startups and established enterprises to conceptualize, design, and engineer web platforms. I thrive on translating complex problems into simple, intuitive code.
+                        </p>
+                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                            My core technology stack includes JavaScript/TypeScript, React, Node.js, Next.js, Python, and SQL/NoSQL databases.
+                        </p>
+                    </div>
+
+                    <div class="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="p-6 rounded-2xl bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+                            <div class="w-10 h-10 rounded-xl bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-400 flex items-center justify-center text-lg">
+                                <i class="fa-solid fa-code"></i>
+                            </div>
+                            <h4 class="font-bold text-slate-900 dark:text-white">Clean Architecture</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Maintainable, scalable, and fully documented modular code structure.</p>
+                        </div>
+
+                        <div class="p-6 rounded-2xl bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+                            <div class="w-10 h-10 rounded-xl bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-400 flex items-center justify-center text-lg">
+                                <i class="fa-solid fa-gauge-high"></i>
+                            </div>
+                            <h4 class="font-bold text-slate-900 dark:text-white">Performance First</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Optimized assets, fast page loads, and smooth animations.</p>
+                        </div>
+
+                        <div class="p-6 rounded-2xl bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+                            <div class="w-10 h-10 rounded-xl bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-400 flex items-center justify-center text-lg">
+                                <i class="fa-solid fa-mobile-screen-button"></i>
+                            </div>
+                            <h4 class="font-bold text-slate-900 dark:text-white">Responsive Design</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Perfect layout adaptation across mobile, tablet, and desktop screens.</p>
+                        </div>
+
+                        <div class="p-6 rounded-2xl bg-white dark:bg-dark-card border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+                            <div class="w-10 h-10 rounded-xl bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-400 flex items-center justify-center text-lg">
+                                <i class="fa-solid fa-users"></i>
+                            </div>
+                            <h4 class="font-bold text-slate-900 dark:text-white">User Centric</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Focused on accessibility, clarity, and delighting end users.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <span class="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">Skills</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-1">Technical Expertise</h2>
+                    <div class="w-12 h-1 bg-brand-600 mx-auto mt-4 rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Skill Card 1: Frontend -->
+                    <div class="bg-white dark:bg-dark-card p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-xl bg-brand-500/10 text-brand-600 dark:text-brand-400 flex items-center justify-center text-lg">
+                                <i class="fa-solid fa-desktop"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white">Frontend</h3>
+                        </div>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between text-sm font-semibold mb-1">
+                                    <span class="text-slate-700 dark:text-slate-300">React.js & Next.js</span>
+                                    <span class="text-brand-600 dark:text-brand-400">92%</span>
+                                </div>
+                                <div class="w-full h-2 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                                    <div class="h-full bg-brand-600 rounded-full skill-bar-fill" style="width: 92%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm font-semibold mb-1">
+                                    <span class="text-slate-700 dark:text-slate-300">JavaScript & TypeScript</span>
+                                    <span class="text-brand-600 dark:text-brand-400">90%</span>
+                                </div>
+                                <div class="w-full h-2 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                                    <div class="h-full bg-brand-600 rounded-full skill-bar-fill" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm font-semibold mb-1">
+                                    <span class="text-slate-700 dark:text-slate-300">HTML5 / Tailwind CSS</span>
+                                    <span class="text-brand-600 dark:text-brand-400">95%</span>
+                                </div>
+                                <div class="w-full h-2 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                                    <div class="h-full bg-brand-600 rounded-full skill-bar-fill" style="width: 95%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Skill Card 2: Backend -->
+                    <div class="bg-white dark:bg-dark-card p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-xl bg-brand-accent/10 text-brand-accent flex items-center justify-center text-lg">
+                                <i class="fa-solid fa-server"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white">Backend</h3>
+                        </div>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between text-sm font-semibold mb-1">
+                                    <span class="text-slate-700 dark:text-slate-300">Node.js & Express</span>
+                                    <span class="text-brand-accent">88%</span>
+                                </div>
+                                <div class="w-full h-2 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                                    <div class="h-full bg-brand-accent rounded-full skill-bar-fill" style="width: 88%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm font-semibold mb-1">
+                                    <span class="text-slate-700 dark:text-slate-300">RESTful APIs & GraphQL</span>
+                                    <span class="text-brand-accent">85%</span>
+                                </div>
+                                <div class="w-full h-2 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                                    <div class="h-full bg-brand-accent rounded-full skill-bar-fill" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm font-semibold mb-1">
+                                    <span class="text-slate-700 dark:text-slate-300">PostgreSQL & MongoDB</span>
+                                    <span class="text-brand-accent">82%</span>
+                                </div>
+                                <div class="w-full h-2 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                                    <div class="h-full bg-brand-accent rounded-full skill-bar-fill" style="width: 82%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Skill Card 3: Tools -->
+                    <div class="bg-white dark:bg-dark-card p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-xl bg-brand-teal/10 text-brand-teal flex items-center justify-center text-lg">
+                                <i class="fa-solid fa-wrench"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white">DevOps & Tools</h3>
+                        </div>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between text-sm font-semibold mb-1">
+                                    <span class="text-slate-700 dark:text-slate-300">Git & CI/CD Pipelines</span>
+                                    <span class="text-brand-teal">90%</span>
+                                </div>
+                                <div class="w-full h-2 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                                    <div class="h-full bg-brand-teal rounded-full skill-bar-fill" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm font-semibold mb-1">
+                                    <span class="text-slate-700 dark:text-slate-300">Docker & AWS Basics</span>
+                                    <span class="text-brand-teal">78%</span>
+                                </div>
+                                <div class="w-full h-2 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                                    <div class="h-full bg-brand-teal rounded-full skill-bar-fill" style="width: 78%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm font-semibold mb-1">
+                                    <span class="text-slate-700 dark:text-slate-300">Figma & UI Prototyping</span>
+                                    <span class="text-brand-teal">85%</span>
+                                </div>
+                                <div class="w-full h-2 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                                    <div class="h-full bg-brand-teal rounded-full skill-bar-fill" style="width: 85%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20 bg-slate-100/60 dark:bg-slate-900/40 border-y border-slate-200/60 dark:border-slate-800/60">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">Projects</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-1">Featured Work</h2>
+                    <div class="w-12 h-1 bg-brand-600 mx-auto mt-4 rounded-full"></div>
+                </div>
+
+                <!-- Project Filter Buttons -->
+                <div class="flex justify-center flex-wrap gap-2 mb-12">
+                    <button class="project-filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-brand-600 text-white shadow-sm transition-all" data-filter="all">All Projects</button>
+                    <button class="project-filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-white dark:bg-dark-card text-slate-600 dark:text-slate-300 hover:bg-slate-200/60 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 transition-all" data-filter="webapp">Web Apps</button>
+                    <button class="project-filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-white dark:bg-dark-card text-slate-600 dark:text-slate-300 hover:bg-slate-200/60 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 transition-all" data-filter="mobile">Mobile</button>
+                </div>
+
+                <!-- Projects Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Project 1 -->
+                    <div class="project-card bg-white dark:bg-dark-card rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm group hover:-translate-y-1.5 transition-all duration-300" data-category="webapp">
+                        <div class="aspect-video overflow-hidden bg-slate-200 dark:bg-slate-800 relative">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="Fintech Dashboard" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold text-brand-600 dark:text-brand-400 uppercase tracking-wider">Web Application</span>
+                                <span class="text-xs text-slate-400 font-medium">React / Node.js</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white">Fintech Analytics Platform</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                                Real-time stock portfolio tracking tool with responsive interactive charts and secure authentication.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="project-card bg-white dark:bg-dark-card rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm group hover:-translate-y-1.5 transition-all duration-300" data-category="mobile">
+                        <div class="aspect-video overflow-hidden bg-slate-200 dark:bg-slate-800 relative">
+                            <img src="https://images.unsplash.com/photo-1526498460520-4c246339dccb?auto=format&fit=crop&w=800&q=80" alt="Fitness App" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold text-brand-accent uppercase tracking-wider">Mobile App</span>
+                                <span class="text-xs text-slate-400 font-medium">React Native</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white">Pulse Fitness Companion</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                                Health tracking application supporting daily step counting, custom workout logs, and progress analytics.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="project-card bg-white dark:bg-dark-card rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm group hover:-translate-y-1.5 transition-all duration-300" data-category="webapp">
+                        <div class="aspect-video overflow-hidden bg-slate-200 dark:bg-slate-800 relative">
+                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="E-Commerce Platform" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold text-brand-teal uppercase tracking-wider">E-Commerce</span>
+                                <span class="text-xs text-slate-400 font-medium">Next.js / Stripe</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white">Nexus Online Store</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                                High-speed headless storefront equipped with live product filtering, shopping cart, and Stripe checkout.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <span class="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">Services</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-1">What I Offer</h2>
+                    <div class="w-12 h-1 bg-brand-600 mx-auto mt-4 rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <div class="bg-white dark:bg-dark-card p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-4 hover:border-brand-500/50 transition-colors">
+                        <div class="w-12 h-12 rounded-xl bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-400 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">Web Development</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                            Custom full-stack web applications engineered for speed, security, search engine visibility, and seamless scaling.
+                        </p>
+                    </div>
+
+                    <div class="bg-white dark:bg-dark-card p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-4 hover:border-brand-500/50 transition-colors">
+                        <div class="w-12 h-12 rounded-xl bg-brand-accent/10 text-brand-accent flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-layer-group"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">API & Backend Architecture</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                            Robust server-side logic, database design, REST/GraphQL APIs, and third-party API integrations.
+                        </p>
+                    </div>
+
+                    <div class="bg-white dark:bg-dark-card p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-4 hover:border-brand-500/50 transition-colors">
+                        <div class="w-12 h-12 rounded-xl bg-brand-teal/10 text-brand-teal flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">UI/UX Interface Design</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                            Clean visual prototyping, component library design, and interactive wireframes built with modern design principles.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 bg-slate-100/60 dark:bg-slate-900/40 border-t border-slate-200/60 dark:border-slate-800/60">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <span class="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">Contact</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-1">Get In Touch</h2>
+                    <div class="w-12 h-1 bg-brand-600 mx-auto mt-4 rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                    
+                    <!-- Contact Info -->
+                    <div class="lg:col-span-5 space-y-6">
+                        <h3 class="text-2xl font-bold text-slate-900 dark:text-white">Let's discuss your next project</h3>
+                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Have a question or looking to start a new project? Feel free to reach out directly or send a message using the form.
+                        </p>
+
+                        <div class="space-y-4 pt-2">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 rounded-xl bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-400 flex items-center justify-center text-lg shrink-0">
+                                    <i class="fa-regular fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <span class="text-xs text-slate-500 dark:text-slate-400 font-semibold block">Email</span>
+                                    <a href="mailto:alex.morgan@example.com" class="text-slate-900 dark:text-white font-bold hover:text-brand-600 transition-colors">alex.morgan@example.com</a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 rounded-xl bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-400 flex items-center justify-center text-lg shrink-0">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div>
+                                    <span class="text-xs text-slate-500 dark:text-slate-400 font-semibold block">Location</span>
+                                    <span class="text-slate-900 dark:text-white font-bold">San Francisco, CA, USA</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="lg:col-span-7">
+                        <form id="contact-form" class="bg-white dark:bg-dark-card p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="name" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Name</label>
+                                    <input type="text" id="name" required placeholder="John Doe" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm">
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Email</label>
+                                    <input type="email" id="email" required placeholder="john@example.com" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm">
+                                </div>
+                            </div>
+                            <div>
+                                <label for="subject" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Subject</label>
+                                <input type="text" id="subject" required placeholder="Project Inquiry" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm">
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Message</label>
+                                <textarea id="message" rows="4" required placeholder="Tell me about your project..." class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm"></textarea>
+                            </div>
+                            <button type="submit" class="w-full py-3.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-semibold text-sm shadow-md shadow-brand-600/20 transition-all">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-white dark:bg-dark-bg border-t border-slate-200 dark:border-slate-800 text-center text-sm text-slate-500">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>&copy; <span id="year"></span> Alex Morgan. All rights reserved.</p>
+            <div class="flex space-x-6">
+                <a href="#about" class="hover:text-brand-600 transition-colors">About</a>
+                <a href="#projects" class="hover:text-brand-600 transition-colors">Projects</a>
+                <a href="#contact" class="hover:text-brand-600 transition-colors">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 bg-slate-900 text-white dark:bg-white dark:text-slate-900 px-5 py-3 rounded-xl shadow-xl flex items-center space-x-3 translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+        <i class="fa-solid fa-circle-check text-emerald-400 dark:text-emerald-600 text-lg"></i>
+        <span class="text-sm font-medium" id="toast-message">Message sent successfully!</span>
+    </div>
+
+    <script>
+        // Set dynamic current year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Theme Toggle Setup (Normal / Light Mode Default)
+        const themeToggleBtns = [document.getElementById('theme-toggle'), document.getElementById('theme-toggle-mobile')];
+        
+        function applyTheme(isDark) {
+            if (isDark) {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('portfolio_theme', 'dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('portfolio_theme', 'light');
+            }
+        }
+
+        // Initialize Light Mode Default
+        const storedTheme = localStorage.getItem('portfolio_theme');
+        if (storedTheme === 'dark') {
+            applyTheme(true);
+        } else {
+            applyTheme(false); // Default is Light/Normal Mode
+        }
+
+        themeToggleBtns.forEach(btn => {
+            if(btn) {
+                btn.addEventListener('click', () => {
+                    const isDark = document.documentElement.classList.contains('dark');
+                    applyTheme(!isDark);
+                });
+            }
+        });
+
+        // Mobile Navigation Menu Drawer
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        if(mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        }
+
+        // Typing Effect Loop
+        const typedTextElement = document.getElementById('typed-text');
+        const phrases = ['Modern Web Applications', 'Scalable Backend APIs', 'Responsive User Interfaces'];
+        let phraseIndex = 0;
+        let letterIndex = 0;
+        let isDeleting = false;
+
+        function typeLoop() {
+            if (!typedTextElement) return;
+            const currentPhrase = phrases[phraseIndex];
+            
+            if (isDeleting) {
+                typedTextElement.textContent = currentPhrase.substring(0, letterIndex - 1);
+                letterIndex--;
+            } else {
+                typedTextElement.textContent = currentPhrase.substring(0, letterIndex + 1);
+                letterIndex++;
+            }
+
+            let speed = isDeleting ? 30 : 70;
+
+            if (!isDeleting && letterIndex === currentPhrase.length) {
+                speed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && letterIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                speed = 400;
+            }
+
+            setTimeout(typeLoop, speed);
+        }
+        typeLoop();
+
+        // Project Filtering Logic
+        const filterBtns = document.querySelectorAll('.project-filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-brand-600', 'text-white');
+                    b.classList.add('bg-white', 'dark:bg-dark-card', 'text-slate-600', 'dark:text-slate-300');
+                });
+                btn.classList.remove('bg-white', 'dark:bg-dark-card', 'text-slate-600', 'dark:text-slate-300');
+                btn.classList.add('bg-brand-600', 'text-white');
+
+                const filter = btn.getAttribute('data-filter');
+
+                projectCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Contact Form Submission & Toast Feedback
+        const contactForm = document.getElementById('contact-form');
+        const toast = document.getElementById('toast');
+
+        if (contactForm && toast) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                toast.classList.remove('translate-y-20', 'opacity-0');
+                toast.classList.add('translate-y-0', 'opacity-100');
+
+                setTimeout(() => {
+                    toast.classList.remove('translate-y-0', 'opacity-100');
+                    toast.classList.add('translate-y-20', 'opacity-0');
+                }, 3000);
+
+                contactForm.reset();
+            });
+        }
+    </script>
+</body>
+</html>
